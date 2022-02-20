@@ -1,0 +1,42 @@
+---
+title: "Incarceration Rates"
+author: "Claire Lai"
+date: "2/19/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction + Summary Information
+
+As you introduce your report and the dataset, you should describe the variables that you've chosen to analyze. In doing so, make clear which measure(s) of incarceration you are focusing on. 
+
+```{r cars}
+summary(cars)
+```
+
+## Trends Over Time Chart
+
+In your .Rmd file, make sure to describe why you included the chart, and what patterns emerged
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+## Variable Comparison Chart
+
+In your .Rmd file, make sure to describe why you included the chart, and what patterns emerged
+
+```{r variable comparison chart, echo = FALSE}
+
+```
+
+## Map
+
+In your .Rmd file, make sure to describe why you included the chart, and what patterns emerged
+
+```{r map, echo = FALSE}
+
+```
