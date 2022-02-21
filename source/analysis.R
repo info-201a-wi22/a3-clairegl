@@ -1,4 +1,8 @@
 incarceration_data <- read.csv("https://raw.githubusercontent.com/vera-institute/incarceration-trends/master/incarceration_trends.csv")
+library(dplyr)
+library(tidyverse)
+library(ggplot2)
+library(leaflet)
 
 #INTRODUCTION + SUMMARY INFO
 
@@ -22,6 +26,26 @@ incarceration_data <- read.csv("https://raw.githubusercontent.com/vera-institute
 #   You must have clear x and y axis labels,
 #   The chart needs a clear title 
 #   You need a legend for your different line colors, and a clear legend title
+
+#g1 data wrangling
+graph1_data <- incarceration_data %>% 
+  filter(county_name == "Santa Clara County") %>% 
+  group_by(year) %>% 
+  select(year, aapi_jail_pop, white_jail_pop) %>% 
+  replace_na(list(aapi_jail_pop = 0, white_jail_pop = 0))
+  
+
+#g1 code
+graph1 <- ggplot(graph1_data,
+                 mapping = aes(x = year)) +
+          geom_line(aes(y = aapi_jail_pop), color = "red") +
+          geom_line(aes(y = white_jail_pop), color = "blue") +
+          ggtitle("Population of AAPIs VS Whites jailed in Santa Clara County over time") +
+          xlab("Year") + ylab("Population jailed")
+          #HOW TO GET LEGEND --> not based on buckets 
+          #MAYBE ADD MORE LINES lol
+          #ALSO ASK ABT RMD RENDERING
+graph1
 
 
 # VARIABLE COMPARISON CHART

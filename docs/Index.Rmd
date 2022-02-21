@@ -1,5 +1,5 @@
 ---
-title: "Incarceration Rates"
+title: "Incarceration Rates In Santa Clara County"
 author: "Claire Lai"
 date: "2/19/2022"
 output: html_document
@@ -7,6 +7,10 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r sourceing data, echo = FALSE}
+source("../source/analysis.R")
 ```
 
 ## Introduction + Summary Information
@@ -21,8 +25,8 @@ summary(cars)
 
 In your .Rmd file, make sure to describe why you included the chart, and what patterns emerged
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+```{r trends over time chart, echo = FALSE}
+plot(graph1)
 ```
 
 ## Variable Comparison Chart
