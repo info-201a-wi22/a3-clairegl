@@ -68,7 +68,7 @@ graph1 <- ggplot(graph1_data,
           #ALSO ERROR??! 
             #graph1Error in incarceration_data %>% graph1_data <- incarceration_data %>%  : 
             #could not find function "%>%<-"
-
+graph1
 
 # VARIABLE COMPARISON CHART
 
@@ -93,7 +93,14 @@ graph1 <- ggplot(graph1_data,
 #   Your color scale needs a legend with a clear label
 #   Use a map based coordinate system to set the aspect ratio of your map (see reading)
 #   Use a minimalist theme for the map (see reading)
+install.packages(maps)
+library(maps)
 
+#wrangle data
+#follow the 
+
+map_data('county')
+map <- ggplot()
 
 
 
