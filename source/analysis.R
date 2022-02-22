@@ -12,6 +12,24 @@ library(leaflet)
 #   Where is my variable the highest / lowest?
 #   How much has my variable change over the last N years?
 
+#minimized data
+incarceration_data_small <- incarceration_data %>% 
+  group_by(year) %>% #NOT WORKING??!?!?
+  select(year, aapi_jail_pop, white_jail_pop, total_jail_pop) %>% 
+  na.omit()
+
+#santa clara county data
+santa_clara_data <- incarceration_data %>% 
+  filter(state == "CA") %>% 
+  filter(county_name == "Santa Clara County") %>% 
+  group_by(year) %>% 
+  select(year, aapi_jail_pop, white_jail_pop, total_jail_pop) %>% 
+  na.omit()
+
+aapi_mean <- mean(incarceration_data_small$aapi_jail_pop)
+aapi_mean_sc <- mean(santa_clara_data$aapi_jail_pop)
+state_most_aapi
+
 
 #TRENDS OVER TIME CHART
 
@@ -29,23 +47,27 @@ library(leaflet)
 
 #g1 data wrangling
 graph1_data <- incarceration_data %>% 
+  filter(state == "CA") %>% 
   filter(county_name == "Santa Clara County") %>% 
   group_by(year) %>% 
-  select(year, aapi_jail_pop, white_jail_pop) %>% 
-  replace_na(list(aapi_jail_pop = 0, white_jail_pop = 0))
-  
+  select(year, aapi_jail_pop, white_jail_pop, black_jail_pop, total_jail_pop) %>% 
+  na.omit()
 
 #g1 code
+#https://www.datanovia.com/en/blog/how-to-create-a-ggplot-with-multiple-lines/
 graph1 <- ggplot(graph1_data,
                  mapping = aes(x = year)) +
           geom_line(aes(y = aapi_jail_pop), color = "red") +
           geom_line(aes(y = white_jail_pop), color = "blue") +
-          ggtitle("Population of AAPIs VS Whites jailed in Santa Clara County over time") +
+          geom_line(aes(y = black_jail_pop), color = "green") +
+          geom_line(aes(y = total_jail_pop), color = "black") +
+          ggtitle("Population of AAPIs VS Whites Vs Blacks jailed in Santa Clara County 1985 - 2018") +
           xlab("Year") + ylab("Population jailed")
           #HOW TO GET LEGEND --> not based on buckets 
-          #MAYBE ADD MORE LINES lol
-          #ALSO ASK ABT RMD RENDERING
-graph1
+          #ALSO ASK ABT RMD RENDERING EXTA BITS
+          #ALSO ERROR??! 
+            #graph1Error in incarceration_data %>% graph1_data <- incarceration_data %>%  : 
+            #could not find function "%>%<-"
 
 
 # VARIABLE COMPARISON CHART
@@ -58,6 +80,7 @@ graph1
 #   The chart needs a clear title 
 #   If you choose to add a color encoding (not required), 
 #     you need a legend for your different color and a clear legend title
+
 
 
 #MAP
