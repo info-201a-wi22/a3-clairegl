@@ -3,6 +3,10 @@ library(dplyr)
 library(tidyverse)
 library(ggplot2)
 library(leaflet)
+#install.packages(maps)
+library(maps)
+#install.packages("usmap")
+library(usmap)
 
 #INTRODUCTION + SUMMARY INFO
 
@@ -26,6 +30,7 @@ santa_clara_data <- incarceration_data %>%
   select(year, aapi_jail_pop, white_jail_pop, total_jail_pop) %>% 
   na.omit()
 
+#summary info
 aapi_mean <- mean(incarceration_data_small$aapi_jail_pop)
 aapi_mean_sc <- mean(santa_clara_data$aapi_jail_pop)
 state_most_aapi
@@ -83,6 +88,7 @@ graph1
 
 
 
+
 #MAP
 
 # The last chart that you'll create and include will show how a variable is distributed geographically.
@@ -93,14 +99,28 @@ graph1
 #   Your color scale needs a legend with a clear label
 #   Use a map based coordinate system to set the aspect ratio of your map (see reading)
 #   Use a minimalist theme for the map (see reading)
-install.packages(maps)
-library(maps)
 
-#wrangle data
-#follow the 
+#map data wrangling
+map_data <- incarceration_data %>% 
+  select(year, state, county_name, aapi_jail_pop) %>% 
+  filter(year == "2018") %>% 
+  replace_na(list(aapi_jail_pop = 0)) %>% 
+  group_by(state) %>% 
+  mutate(mean = mean(aapi_jail_pop)) %>% 
+  distinct(mean)
 
-map_data('county')
-map <- ggplot()
+#map code
+#https://jtr13.github.io/cc19/different-ways-of-plotting-u-s-map-in-r.html
+map <- plot_usmap(data = map_data,
+                  values = "mean") +
+      scale_fill_continuous(low = "#AF7AC5", 
+                  high = "#E74C3C", 
+                  name = "Average AAIP Persons Jailed", 
+                  limits = c(0, 36)) +
+      labs(title = "Average of AAPI Persons Jailed By State In 2018") +
+      theme(legend.position = "right")
+
+map
 
 
 
