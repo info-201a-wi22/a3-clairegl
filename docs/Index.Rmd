@@ -5,11 +5,11 @@ date: "2/19/2022"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include = FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r sourceing data, echo = FALSE}
+```{r sourcing data, echo = FALSE}
 source("../source/analysis.R")
 ```
 
@@ -17,8 +17,9 @@ source("../source/analysis.R")
 
 As you introduce your report and the dataset, you should describe the variables that you've chosen to analyze. In doing so, make clear which measure(s) of incarceration you are focusing on. 
 
-```{r cars}
-summary(cars)
+```{r aapi mean, echo = FALSE}
+aapi_mean
+aapi_mean_ca
 ```
 
 ## Trends Over Time Chart
@@ -42,5 +43,5 @@ In your .Rmd file, make sure to describe why you included the chart, and what pa
 In your .Rmd file, make sure to describe why you included the chart, and what patterns emerged
 
 ```{r map, echo = FALSE}
-
+plot(map)
 ```

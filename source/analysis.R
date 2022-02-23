@@ -48,7 +48,7 @@ state_most_aapi
 
 aapi_mean_ca <- mean(ca_data$aapi_jail_pop)
 
-county_most_cases <- incarceration_data %>% 
+county_most_aapi <- incarceration_data %>% 
   filter(aapi_jail_pop == max(aapi_jail_pop, na.rm = TRUE)) %>% 
   select("county_name") %>% 
   pull(county_name)
