@@ -19,6 +19,13 @@ library(usmap)
 #minimized data
 incarceration_data_small <- incarceration_data %>% 
   group_by(year) %>% #NOT WORKING??!?!?
+  select(year, state, aapi_jail_pop, white_jail_pop, total_jail_pop) %>% 
+  na.omit()
+
+#ca data
+ca_data <- incarceration_data %>% 
+  filter(state == "CA") %>% 
+  group_by(year) %>% 
   select(year, aapi_jail_pop, white_jail_pop, total_jail_pop) %>% 
   na.omit()
 
@@ -32,8 +39,31 @@ santa_clara_data <- incarceration_data %>%
 
 #summary info
 aapi_mean <- mean(incarceration_data_small$aapi_jail_pop)
-aapi_mean_sc <- mean(santa_clara_data$aapi_jail_pop)
+
+state_most_aapi <- incarceration_data %>% 
+  filter(aapi_jail_pop == max(aapi_jail_pop, na.rm = TRUE)) %>% 
+  select("state") %>% 
+  pull(state)
 state_most_aapi
+
+aapi_mean_ca <- mean(ca_data$aapi_jail_pop)
+
+county_most_cases <- incarceration_data %>% 
+  filter(aapi_jail_pop == max(aapi_jail_pop, na.rm = TRUE)) %>% 
+  select("county_name") %>% 
+  pull(county_name)
+county_most_aapi
+
+la_data <- incarceration_data %>% 
+  filter(state == "CA") %>% 
+  filter(county_name == "Los Angeles County") %>% 
+  group_by(year) %>% 
+  select(year, aapi_jail_pop, white_jail_pop, total_jail_pop) %>% 
+  na.omit()
+
+aapi_mean_la <- mean(la_data$aapi_jail_pop)
+
+aapi_mean_sc <- mean(santa_clara_data$aapi_jail_pop)
 
 
 #TRENDS OVER TIME CHART
