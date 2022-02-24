@@ -39,6 +39,7 @@ santa_clara_data <- incarceration_data %>%
 
 #summary info
 aapi_mean <- mean(incarceration_data_small$aapi_jail_pop)
+aapi_mean
 
 state_most_aapi <- incarceration_data %>% 
   filter(aapi_jail_pop == max(aapi_jail_pop, na.rm = TRUE)) %>% 
@@ -62,8 +63,10 @@ la_data <- incarceration_data %>%
   na.omit()
 
 aapi_mean_la <- mean(la_data$aapi_jail_pop)
+aapi_mean_la
 
 aapi_mean_sc <- mean(santa_clara_data$aapi_jail_pop)
+aapi_mean_sc
 
 
 #TRENDS OVER TIME CHART
@@ -92,12 +95,16 @@ graph1_data <- incarceration_data %>%
 #https://www.datanovia.com/en/blog/how-to-create-a-ggplot-with-multiple-lines/
 graph1 <- ggplot(graph1_data,
                  mapping = aes(x = year)) +
-          geom_line(aes(y = aapi_jail_pop), color = "red") +
-          geom_line(aes(y = white_jail_pop), color = "blue") +
-          geom_line(aes(y = black_jail_pop), color = "green") +
+          geom_line(aes(y = aapi_jail_pop), color = "#FF6B35") +
+          geom_line(aes(y = white_jail_pop), color = "#559CAD") +
+          geom_line(aes(y = black_jail_pop), color = "8C5383") +
           geom_line(aes(y = total_jail_pop), color = "black") +
           ggtitle("Population of AAPIs VS Whites Vs Blacks jailed in Santa Clara County 1985 - 2018") +
-          xlab("Year") + ylab("Population jailed")
+          xlab("Year") + ylab("Population jailed") + labs(color = "race") +
+          scale_colour_manual(values = c("aapi" = "red",
+                                        "white" = "blue",
+                                        "black" = "green",
+                                        "total" = "black"))
           #HOW TO GET LEGEND --> not based on buckets 
           #ALSO ASK ABT RMD RENDERING EXTA BITS
           #ALSO ERROR??! 
@@ -116,8 +123,28 @@ graph1
 #   If you choose to add a color encoding (not required), 
 #     you need a legend for your different color and a clear legend title
 
+graph2_data_ca <- incarceration_data %>% 
+  filter(state == "CA") %>% 
+  filter(year == "2018") %>% 
+  select(year, aapi_jail_pop, aapi_pop_15to64)
+
+graph2_data_whole <- incarceration_data %>% 
+  filter(year == "2018") %>% 
+  select(year, aapi_jail_pop, aapi_pop_15to64) %>% 
+  na.omit()
+
+graph2 <- ggplot() +
+          geom_point(graph2_data_whole, 
+                     mapping = aes(x = aapi_jail_pop, y = aapi_pop_15to64), 
+                     color = "#FF6B35") +
+          geom_point(graph2_data_ca, 
+                     mapping = aes(x = aapi_jail_pop, y = aapi_pop_15to64), 
+                     color = "#559CAD") +
+          ggtitle("Population of AAPI Jailed vs Population of Total AAPI") +
+          xlab("Total AAPI Population") + ylab("AAPI Jailed Population")
 
 
+graph2
 
 #MAP
 
@@ -143,8 +170,8 @@ map_data <- incarceration_data %>%
 #https://jtr13.github.io/cc19/different-ways-of-plotting-u-s-map-in-r.html
 map <- plot_usmap(data = map_data,
                   values = "mean") +
-      scale_fill_continuous(low = "#AF7AC5", 
-                  high = "#E74C3C", 
+      scale_fill_continuous(low = "#FAF3DD", 
+                  high = "#559CAD", 
                   name = "Average AAIP Persons Jailed", 
                   limits = c(0, 36)) +
       labs(title = "Average of AAPI Persons Jailed By State In 2018") +
