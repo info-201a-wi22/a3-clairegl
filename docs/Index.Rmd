@@ -15,27 +15,47 @@ source("../source/analysis.R")
 
 ## Introduction + Summary Information
 
-As you introduce your report and the dataset, you should describe the variables that you've chosen to analyze. In doing so, make clear which measure(s) of incarceration you are focusing on. 
+This report will focus on the incarceration rates of AAPI in Santa Clara County, California. I chose to focus on this county and this racial group in particular because I am interested in examining the trends of incarceration of the people I was most surrounded by growing up, where I grew up.
 
-```{r aapi mean, echo = FALSE}
-aapi_mean
-aapi_mean_ca
+The average of AAPI Jailed In Santa Clara county is `r aapi_mean_sc`.
+
+```{r aapi mean sc, echo = FALSE}
+aapi_mean_sc
 ```
 
-## Trends Over Time Chart
+This is bigger than the national average of AAPI jailed which is `r aapi_mean` as well as the California average of AAPI jailed which is `r aapi_mean_ca` which also happens to be the state that has the most AAPI jailed.
 
-In your .Rmd file, make sure to describe why you included the chart, and what patterns emerged
+```{r aapi mean2, echo = FALSE}
+aapi_mean
+aapi_mean_ca
+state_most_aapi
+```
+
+However, Santa Clara County is not the county with the highest average of APPI jailed. That county is `r county_most_aapi` which surprisingly has an average AAPI jailed that is lower than Santa Clara County at `r aapi_mean_la`.
+
+```{r aapi mean3, echo = FALSE}
+county_most_aapi
+aapi_mean_la
+```
+
+This information tells us that the average AAPI jailed in Santa Clara County is above the national average and the Californian average. Santa Clara County and Los Angeles County are both highly populated counties with a sizable AAPI population, so it makes sense that the average AAPI jailed are similar. A possible reason why LA has is the county with the most AAPI jailed but Santa Clara has a higher average could be that LA just happened to have a exteremly high number of AAPI jailed one year making it the highest in the data set.
+
+## Trends Over Time Chart
 
 ```{r trends over time chart, echo = FALSE}
 plot(graph1)
 ```
+
+This chart is meant to show the amount of AAPIs, White, and Backs jailed over time as well as the total jailed population. These three racial groups were included because they are three races with the highest population in Santa Clara County. The time frame of this graph is from 1985-2018, the years 1970-1984 were ommited because there was not data avaliable for every population.
+
+This graph shows that compared to the other two groups the population of AAPI jailed is extremely low. In addition, it appears to be that the AAPI jailed population doesn't have a very big affect on the over total jailed population trend line for Santa Clara County. The line of the Latinx jailed population most follows that of the total county jailed population, sharing similar peaks and dips which suggests that the total county jailed population is closely correalted to that of the Latinx population. 
 
 ## Variable Comparison Chart
 
 In your .Rmd file, make sure to describe why you included the chart, and what patterns emerged
 
 ```{r variable comparison chart, echo = FALSE}
-
+plot(graph2)
 ```
 
 ## Map
