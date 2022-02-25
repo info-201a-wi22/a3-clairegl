@@ -128,6 +128,12 @@ graph2_data_ca <- incarceration_data %>%
   filter(year == "2018") %>% 
   select(year, aapi_jail_pop, aapi_pop_15to64)
 
+graph2_data_sc <- incarceration_data %>% 
+  filter(state == "CA") %>% 
+  filter(year == "2018") %>% 
+  filter(county_name == "Santa Clara County") %>%
+  select(year, aapi_jail_pop, aapi_pop_15to64)
+
 graph2_data_whole <- incarceration_data %>% 
   filter(year == "2018") %>% 
   select(year, aapi_jail_pop, aapi_pop_15to64) %>% 
@@ -138,11 +144,13 @@ graph2 <- ggplot() +
                      mapping = aes(x = aapi_jail_pop, y = aapi_pop_15to64, color = "#FF6B35")) +
           geom_point(graph2_data_ca, 
                      mapping = aes(x = aapi_jail_pop, y = aapi_pop_15to64, color = "#559CAD")) +
+          geom_point(graph2_data_sc, 
+                    mapping = aes(x = aapi_jail_pop, y = aapi_pop_15to64, color = "#8C5383")) +
           labs(title ="Population of AAPI Jailed vs Population of Total AAPI",
                x = "Total AAPI Jailed Population", y = "AAPI Jailed Population Age 15-64") +
-          scale_color_identity(name = "Racial Group",
-                      breaks = c("#FF6B35", "#559CAD"),
-                      labels = c("Nation", "California"),
+          scale_color_identity(name = "Location",
+                      breaks = c("#FF6B35", "#559CAD", "#8C5383"),
+                      labels = c("Nation", "California", "Santa Clara County"),
                       guide = "legend")
 
 
