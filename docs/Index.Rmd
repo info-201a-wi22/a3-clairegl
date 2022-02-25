@@ -52,7 +52,7 @@ This graph shows that compared to the other two groups the population of AAPI ja
 
 ## Variable Comparison Chart
 
-This graphs shows the difference between
+This graph shows the difference between the population of AAPI Jailed and Population of AAPI aged 15-64 for both the nation and California. In this graph Santa Clara County is represented by a singular point 
 
 ```{r variable comparison chart, echo = FALSE}
 plot(graph2)

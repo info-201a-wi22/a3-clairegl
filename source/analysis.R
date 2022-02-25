@@ -146,7 +146,7 @@ graph2 <- ggplot() +
                      mapping = aes(x = aapi_jail_pop, y = aapi_pop_15to64, color = "#559CAD")) +
           geom_point(graph2_data_sc, 
                     mapping = aes(x = aapi_jail_pop, y = aapi_pop_15to64, color = "#8C5383")) +
-          labs(title ="Population of AAPI Jailed vs Population of Total AAPI",
+          labs(title ="Population of AAPI Jailed vs Population of Total AAPI In 2018",
                x = "Total AAPI Jailed Population", y = "AAPI Jailed Population Age 15-64") +
           scale_color_identity(name = "Location",
                       breaks = c("#FF6B35", "#559CAD", "#8C5383"),
