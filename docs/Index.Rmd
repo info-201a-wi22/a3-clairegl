@@ -52,11 +52,11 @@ This graph shows that compared to the other two groups the population of AAPI ja
 
 ## Variable Comparison Chart
 
-This graph shows the difference between the population of AAPI Jailed and Population of AAPI aged 15-64 for both the nation and California. In this graph Santa Clara County is represented by a singular point 
-
 ```{r variable comparison chart, echo = FALSE}
 plot(graph2)
 ```
+
+This graph shows the difference between the population of AAPI Jailed and Population of AAPI aged 15-64 for both the nation and California. In this graph Santa Clara County (in purple) is represented by a singular point. It shows that in 2018 the AAPI Jailed population was about 250 while the AAPI population ages 15 - 64 was around 530000. Compared to the national and the rest of the California data points it does seem like Santa Clara Coutyn is an outlier, as most of the points show that for many counties, both in California and nationally, there is a low AAPI jailed population and a low AAPI population aged 15-64.
 
 ## Map
 
