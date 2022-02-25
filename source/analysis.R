@@ -136,7 +136,7 @@ graph2
 
 
 #map data wrangling
-map_data <- incarceration_data %>% 
+test_data <- incarceration_data %>% 
   filter(year == "2018")
 
 #map data joining
@@ -176,7 +176,6 @@ map <- ggplot(map_data2) +
               ggtitle("AAPI Jailed Population of California Counties In 2018")
 
 map
-
 
 
 
