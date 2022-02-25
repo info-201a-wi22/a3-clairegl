@@ -10,26 +10,19 @@ library(usmap)
 
 #INTRODUCTION + SUMMARY INFO
 
-# Then, you will share at least 5 relevant values of interest. 
-# These will likely be calculated using your DPLYR skills, answering questions such as: 
-#   What is the average value of my variable across all the counties (in the current year)?
-#   Where is my variable the highest / lowest?
-#   How much has my variable change over the last N years?
 
-#minimized data
+#summary data wrangling
 incarceration_data_small <- incarceration_data %>% 
   group_by(year) %>% #NOT WORKING??!?!?
   select(year, state, aapi_jail_pop, white_jail_pop, total_jail_pop) %>% 
   na.omit()
 
-#ca data
 ca_data <- incarceration_data %>% 
   filter(state == "CA") %>% 
   group_by(year) %>% 
   select(year, aapi_jail_pop, white_jail_pop, total_jail_pop) %>% 
   na.omit()
 
-#santa clara county data
 santa_clara_data <- incarceration_data %>% 
   filter(state == "CA") %>% 
   filter(county_name == "Santa Clara County") %>% 
@@ -37,7 +30,7 @@ santa_clara_data <- incarceration_data %>%
   select(year, aapi_jail_pop, white_jail_pop, total_jail_pop) %>% 
   na.omit()
 
-#summary info
+#summary info code
 aapi_mean <- mean(incarceration_data_small$aapi_jail_pop)
 aapi_mean
 
@@ -71,17 +64,6 @@ aapi_mean_sc
 
 #TRENDS OVER TIME CHART
 
-# The first chart that you'll create and include will show the trend over time of your variable/topic. 
-# Think carefully about what you want to communicate to your user 
-# (you may have to find relevant trends in the dataset first!). 
-# Here are some requirements to help guide your design:
-#   Show more than one, but fewer than ~10 lines: your graph should compare the trend 
-#     of your measure over time. This may mean showing the same measure for different locations, 
-#     or different racial groups. Think carefully about a meaningful comparison of locations 
-#     (e.g., the top 10 counties in a state, top 10 states, etc.)
-#   You must have clear x and y axis labels,
-#   The chart needs a clear title 
-#   You need a legend for your different line colors, and a clear legend title
 
 #g1 data wrangling
 graph1_data <- incarceration_data %>% 
@@ -114,15 +96,8 @@ graph1
 
 # VARIABLE COMPARISON CHART
 
-# The second chart that you'll create and include will show how two different (continuous) variables
-# are related to one another. Again, think carefully about what such a comparison means, 
-# and want to communicate to your user (you may have to find relevant trends in the dataset first!). 
-# Here are some requirements to help guide your design:
-#   You must have clear x and y axis labels,
-#   The chart needs a clear title 
-#   If you choose to add a color encoding (not required), 
-#     you need a legend for your different color and a clear legend title
 
+#g2 data wrangling
 graph2_data_ca <- incarceration_data %>% 
   filter(state == "CA") %>% 
   filter(year == "2018") %>% 
@@ -139,6 +114,7 @@ graph2_data_whole <- incarceration_data %>%
   select(year, aapi_jail_pop, aapi_pop_15to64, county_name, state) %>% 
   na.omit()
 
+#g2 code
 graph2 <- ggplot() +
           geom_point(graph2_data_whole, 
                      mapping = aes(x = aapi_jail_pop, y = aapi_pop_15to64, color = "#FF6B35")) +
@@ -158,36 +134,51 @@ graph2
 
 #MAP
 
-# The last chart that you'll create and include will show how a variable is distributed geographically.
-# Again, think carefully about what such a comparison means, and want to communicate to your user 
-# (you may have to find relevant trends in the dataset first!). 
-# Here are some requirements to help guide your design:
-#   Your map needs a title
-#   Your color scale needs a legend with a clear label
-#   Use a map based coordinate system to set the aspect ratio of your map (see reading)
-#   Use a minimalist theme for the map (see reading)
 
 #map data wrangling
 map_data <- incarceration_data %>% 
-  select(year, state, county_name, aapi_jail_pop) %>% 
-  filter(year == "2018") %>% 
-  replace_na(list(aapi_jail_pop = 0)) %>% 
-  group_by(state) %>% 
-  mutate(mean = mean(aapi_jail_pop)) %>% 
-  distinct(mean)
+  filter(year == "2018")
+
+#map data joining
+county_united <- map_data("county") %>%
+  unite(polyname, region, subregion, sep = ",")
+
+county_shapes <- county_united  %>%
+  left_join(county.fips, by="polyname")
+
+map_data2 <- county_shapes %>%
+  left_join(test_data, by="fips") %>% 
+  filter(state == "CA")
+
+#minimalist theme
+blank_theme <- theme_bw() +
+  theme(
+    axis.line = element_blank(), # remove axis lines
+    axis.text = element_blank(), # remove axis labels
+    axis.ticks = element_blank(), # remove axis ticks
+    axis.title = element_blank(), # remove axis titles
+    plot.background = element_blank(), # remove gray background
+    panel.grid.major = element_blank(), # remove major grid lines
+    panel.grid.minor = element_blank(), # remove minor grid lines
+    panel.border = element_blank() # remove border around plot
+  )
 
 #map code
-#https://jtr13.github.io/cc19/different-ways-of-plotting-u-s-map-in-r.html
-map <- plot_usmap(data = map_data,
-                  values = "mean") +
-      scale_fill_continuous(low = "#FAF3DD", 
-                  high = "#559CAD", 
-                  name = "Average AAIP Persons Jailed", 
-                  limits = c(0, 36)) +
-      labs(title = "Average of AAPI Persons Jailed By State In 2018") +
-      theme(legend.position = "right")
+map <- ggplot(map_data2) + 
+             geom_polygon(
+                mapping = aes(x = long, y = lat, group = group, fill = aapi_jail_pop),
+                color = "gray", size = 0.3) + 
+              coord_map() + 
+              scale_fill_continuous(limits = c(0, max(map_data2$aapi_jail_pop)), 
+                                    na.value = "white", low = "#FAF3DD", high = "#559CAD",
+                                    name = "AAIP Persons Jailed") + 
+              blank_theme +
+              ggtitle("AAPI Jailed Population of California Counties In 2018")
 
 map
+
+
+
 
 
 
