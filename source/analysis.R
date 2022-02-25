@@ -88,28 +88,28 @@ graph1_data <- incarceration_data %>%
   filter(state == "CA") %>% 
   filter(county_name == "Santa Clara County") %>% 
   group_by(year) %>% 
-  select(year, aapi_jail_pop, white_jail_pop, black_jail_pop, total_jail_pop) %>% 
+  select(year, aapi_jail_pop, white_jail_pop, latinx_jail_pop, total_jail_pop) %>% 
   na.omit()
 
 #g1 code
 #https://www.datanovia.com/en/blog/how-to-create-a-ggplot-with-multiple-lines/
+#https://aosmith.rbind.io/2018/07/19/manual-legends-ggplot2/
 graph1 <- ggplot(graph1_data,
                  mapping = aes(x = year)) +
-          geom_line(aes(y = aapi_jail_pop), color = "#FF6B35") +
-          geom_line(aes(y = white_jail_pop), color = "#559CAD") +
-          geom_line(aes(y = black_jail_pop), color = "8C5383") +
-          geom_line(aes(y = total_jail_pop), color = "black") +
-          ggtitle("Population of AAPIs VS Whites Vs Blacks jailed in Santa Clara County 1985 - 2018") +
-          xlab("Year") + ylab("Population jailed") + labs(color = "race") +
-          scale_colour_manual(values = c("aapi" = "red",
-                                        "white" = "blue",
-                                        "black" = "green",
-                                        "total" = "black"))
-          #HOW TO GET LEGEND --> not based on buckets 
-          #ALSO ASK ABT RMD RENDERING EXTA BITS
-          #ALSO ERROR??! 
-            #graph1Error in incarceration_data %>% graph1_data <- incarceration_data %>%  : 
-            #could not find function "%>%<-"
+  geom_line(aes(y = aapi_jail_pop, color = "#FF6B35")) +
+  geom_line(aes(y = white_jail_pop, color = "#559CAD")) +
+  geom_line(aes(y = latinx_jail_pop, color = "#8C5383")) +
+  geom_line(aes(y = total_jail_pop, color = "black")) +
+  labs(title = "Population of AAPIs VS Whites Vs Latinx jailed in Santa Clara County 1985 - 2018",
+       x = "Year",
+       y = "Population Jailed",
+       color = "race") +
+  scale_color_identity(name = "Racial Group",
+                       breaks = c("#FF6B35", "#559CAD", "#8C5383", "black"),
+                       labels = c("AAPI", "White", "Latinx", "County Total"),
+                       guide = "legend")
+
+
 graph1
 
 # VARIABLE COMPARISON CHART
@@ -135,13 +135,15 @@ graph2_data_whole <- incarceration_data %>%
 
 graph2 <- ggplot() +
           geom_point(graph2_data_whole, 
-                     mapping = aes(x = aapi_jail_pop, y = aapi_pop_15to64), 
-                     color = "#FF6B35") +
+                     mapping = aes(x = aapi_jail_pop, y = aapi_pop_15to64, color = "#FF6B35")) +
           geom_point(graph2_data_ca, 
-                     mapping = aes(x = aapi_jail_pop, y = aapi_pop_15to64), 
-                     color = "#559CAD") +
-          ggtitle("Population of AAPI Jailed vs Population of Total AAPI") +
-          xlab("Total AAPI Population") + ylab("AAPI Jailed Population")
+                     mapping = aes(x = aapi_jail_pop, y = aapi_pop_15to64, color = "#559CAD")) +
+          labs(title ="Population of AAPI Jailed vs Population of Total AAPI",
+               x = "Total AAPI Jailed Population", y = "AAPI Jailed Population Age 15-64") +
+          scale_color_identity(name = "Racial Group",
+                      breaks = c("#FF6B35", "#559CAD"),
+                      labels = c("Nation", "California"),
+                      guide = "legend")
 
 
 graph2

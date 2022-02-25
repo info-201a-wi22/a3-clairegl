@@ -46,13 +46,13 @@ This information tells us that the average AAPI jailed in Santa Clara County is 
 plot(graph1)
 ```
 
-This chart is meant to show the amount of AAPIs, White, and Backs jailed over time as well as the total jailed population. These three racial groups were included because they are three races with the highest population in Santa Clara County. The time frame of this graph is from 1985-2018, the years 1970-1984 were ommited because there was not data avaliable for every population.
+This chart is meant to show the amount of AAPIs, White, and Latinx jailed over time as well as the total jailed population. These three racial groups were included because they are three races with the highest population in Santa Clara County. The time frame of this graph is from 1985-2018, the years 1970-1984 were omited because there was not data available for every population.
 
-This graph shows that compared to the other two groups the population of AAPI jailed is extremely low. In addition, it appears to be that the AAPI jailed population doesn't have a very big affect on the over total jailed population trend line for Santa Clara County. The line of the Latinx jailed population most follows that of the total county jailed population, sharing similar peaks and dips which suggests that the total county jailed population is closely correalted to that of the Latinx population. 
+This graph shows that compared to the other two groups the population of AAPI jailed is extremely low. In addition, it appears to be that the AAPI jailed population doesn't have a very big affect on the over total jailed population trend line for Santa Clara County. The line of the Latinx jailed population most follows that of the total county jailed population, sharing similar peaks and dips which suggests that the total county jailed population is closely correlated to that of the Latinx population.
 
 ## Variable Comparison Chart
 
-In your .Rmd file, make sure to describe why you included the chart, and what patterns emerged
+This graphs shows the difference between
 
 ```{r variable comparison chart, echo = FALSE}
 plot(graph2)
