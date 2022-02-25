@@ -65,3 +65,5 @@ In your .Rmd file, make sure to describe why you included the chart, and what pa
 ```{r map, echo = FALSE}
 plot(map)
 ```
+![Map with labled California Counties, Source California Department of Education](https://www.cde.ca.gov/sp/cd/re/images/cacountymap.gif)
+This map shows the AAPI jailed population of different California counties in 2018. To be able to tell which county is which I have included a second map with county labels. It looks like the county with the highest AAPI jailed population was San Bernadino, which is interesting as it was not the county with the highest AAPI Jailed population in total that was calculated in the summary information. When looking at Santa Clara County it has one of the highest jailed AAPI population for 2018 [].
