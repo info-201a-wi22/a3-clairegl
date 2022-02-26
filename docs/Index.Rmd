@@ -17,10 +17,11 @@ source("../source/analysis.R")
 
 This report will focus on the incarceration rates of AAPI in Santa Clara County, California. I chose to focus on this county and this racial group in particular because I am interested in examining the trends of incarceration of the people I was most surrounded by growing up, where I grew up.
 
-The average of AAPI Jailed In Santa Clara county is `r aapi_mean_sc`.
+The average of AAPI jailed in Santa Clara county is `r aapi_mean_sc`. The data used to calculate the average covers a range of `r year_range` years, from 1985 - 2018, however this is not the year range of the entire data set as which starts in 1970. From 1970 - 1984 the values fr AAPI Jailed in Santa Clara County is N/A.
 
 ```{r aapi mean sc, echo = FALSE}
 aapi_mean_sc
+year_range
 ```
 
 This is bigger than the national average of AAPI jailed which is `r aapi_mean` as well as the California average of AAPI jailed which is `r aapi_mean_ca` which also happens to be the state that has the most AAPI jailed.
@@ -38,7 +39,7 @@ county_most_aapi
 aapi_mean_la
 ```
 
-This information tells us that the average AAPI jailed in Santa Clara County is above the national average and the Californian average. Santa Clara County and Los Angeles County are both highly populated counties with a sizable AAPI population, so it makes sense that the average AAPI jailed are similar. A possible reason why LA has is the county with the most AAPI jailed but Santa Clara has a higher average could be that LA just happened to have a exteremly high number of AAPI jailed one year making it the highest in the data set.
+This information tells us that the average AAPI jailed in Santa Clara County is above the national average and the Californian average. Santa Clara County and Los Angeles County are both highly populated counties with a sizable AAPI population, so it makes sense that the average AAPI jailed are similar. A possible reason why LA has is the county with the most AAPI jailed but Santa Clara has a higher average could be that LA just happened to have a extremely high number of AAPI jailed one year making it the highest in the data set.
 
 ## Trends Over Time Chart
 
@@ -46,7 +47,7 @@ This information tells us that the average AAPI jailed in Santa Clara County is 
 plot(graph1)
 ```
 
-This chart is meant to show the amount of AAPIs, White, and Latinx jailed over time as well as the total jailed population. These three racial groups were included because they are three races with the highest population in Santa Clara County. The time frame of this graph is from 1985-2018, the years 1970-1984 were omited because there was not data available for every population.
+This chart is meant to show the amount of AAPIs, White, and Latinx jailed over time as well as the total jailed population. These three racial groups were included because they are three races with the highest population in Santa Clara County. The time frame of this graph is from 1985-2018, the years 1970-1984 were omitted because, as touched on in the introduction, they was not data available for every population.
 
 This graph shows that compared to the other two groups the population of AAPI jailed is extremely low. In addition, it appears to be that the AAPI jailed population doesn't have a very big affect on the over total jailed population trend line for Santa Clara County. The line of the Latinx jailed population most follows that of the total county jailed population, sharing similar peaks and dips which suggests that the total county jailed population is closely correlated to that of the Latinx population.
 
@@ -58,7 +59,7 @@ plot(graph2)
 
 This graph shows the difference between the population of AAPI Jailed and Population of AAPI aged 15-64 for both the nation and California. I decided to include this graph because it gives an overview on how Santa Clara County compares to other counties around the US. We don't know which point is which county but we can broadly see how Santa Clara County compares to the rest of the nation.
 
-In this graph Santa Clara County (in purple) is represented by a singular point. It shows that in 2018 the AAPI Jailed population was about 250 while the AAPI population ages 15 - 64 was around 530000. Compared to the national and the rest of the California data points it does seem like Santa Clara County is an outlier, as most of the points show that for many counties, both in California and nationally, there is a low AAPI jailed population and a low AAPI population aged 15-64.
+In this graph Santa Clara County (in purple) is represented by a singular point. It shows that in 2018 the AAPI Jailed population was about 250 while the AAPI population ages 15 - 64 was around 530000. Compared to the national and the rest of the California data points it does seem like Santa Clara County is an outlier, as most of the points show that for many counties, both within California and nationally, there is both a low AAPI jailed population and a low AAPI population aged 15-64.
 
 ## Map
 
@@ -66,6 +67,6 @@ In this graph Santa Clara County (in purple) is represented by a singular point.
 plot(map)
 ```
 ![Map with labled California Counties, Source California Department of Education](https://www.cde.ca.gov/sp/cd/re/images/cacountymap.gif)
-<p> This map shows the AAPI jailed population of different California counties in 2018. I decided to add this map to examine how the AAPI jailed population in Santa Clara county compares to the population of the other counties in California, even though the graph above shows almost the same thing here we can know which county is which. I chose to focus only on California and not the entire US because of the fact that it is the state with the highest population of AAPI jailed. Not to mention since the national average of AAPI jailed is so small when compared to the Californian average there would not be a lot to compare. To be able to tell which county is which I have included a second map with county labels. 
+<p> This map shows the AAPI jailed population of different California counties in 2018. I decided to add this map to examine how the AAPI jailed population in Santa Clara county compares to the population of the other counties in California only, here we can see which county is which, as opposed to the graph above. This gives us a more nuanced view of how Santa Clara County compares to the other counties in terms of AAPI Jailed Population. I chose to focus only on California and not the entire US because of the fact that it is the state with the highest population of AAPI jailed. Not to mention since the national average of AAPI jailed is so small when compared to the Californian average there would not be a lot to compare. To be able to tell which county is which I have included a second map with county labels. </p>
 
 It looks like the county with the highest AAPI jailed population was San Bernadino, which is interesting as it was not the county with the highest AAPI Jailed population in total that was calculated in the summary information. This map shows that Santa Clara County has one of the highest jailed AAPI population for 2018. Looking at trends over time graph will give us some more context for this statistic and we can see that there looks to be around 250 AAPI jailed. These two graphs also show that even through Santa Clara County has one of the highest AAPI jailed populations, this values has been pretty stable over the past few years and compared to the White and Latinx population it is overall lower. 

@@ -61,6 +61,7 @@ aapi_mean_la
 aapi_mean_sc <- mean(santa_clara_data$aapi_jail_pop)
 aapi_mean_sc
 
+year_range <- max(santa_clara_data$year) - min(santa_clara_data$year)
 
 #TRENDS OVER TIME CHART
 
