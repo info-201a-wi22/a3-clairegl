@@ -17,7 +17,7 @@ source("../source/analysis.R")
 
 This report will focus on the incarceration rates of AAPI in Santa Clara County, California. I chose to focus on this county and this racial group in particular because I am interested in examining the trends of incarceration of the people I was most surrounded by growing up, where I grew up.
 
-The average of AAPI jailed in Santa Clara county is `r aapi_mean_sc`. The data used to calculate the average covers a range of `r year_range` years, from 1985 - 2018, however this is not the year range of the entire data set as which starts in 1970. From 1970 - 1984 the values fr AAPI Jailed in Santa Clara County is N/A.
+The average of AAPI jailed in Santa Clara county is `r aapi_mean_sc`. The data used to calculate the average covers a range of `r year_range` years, from 1985 - 2018, however this is not the year range of the entire data set as which starts in 1970. From 1970 - 1984 the values for AAPI Jailed in Santa Clara County is N/A.
 
 ```{r aapi mean sc, echo = FALSE}
 aapi_mean_sc
@@ -32,10 +32,12 @@ aapi_mean_ca
 state_most_aapi
 ```
 
-However, Santa Clara County is not the county with the highest average of APPI jailed. That county is `r county_most_aapi` which surprisingly has an average AAPI jailed that is lower than Santa Clara County at `r aapi_mean_la`.
+However, Santa Clara County is not the county with the highest average of APPI jailed. That county is `r county_most_aapi` which had an AAPI jailed population of `r num_most_aapi` in `r year_most_aapi`. Surprisingly even though LA has the highest number of AAPI jailed in the data set it has an average AAPI jailed that is lower than Santa Clara County at `r aapi_mean_la`.
 
 ```{r aapi mean3, echo = FALSE}
 county_most_aapi
+num_most_aapi
+year_most_aapi
 aapi_mean_la
 ```
 
