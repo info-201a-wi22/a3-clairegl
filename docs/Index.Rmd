@@ -6,7 +6,7 @@ output: html_document
 ---
 
 ```{r setup, include = FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
 ```
 
 ```{r sourcing data, echo = FALSE}
@@ -52,18 +52,20 @@ This graph shows that compared to the other two groups the population of AAPI ja
 
 ## Variable Comparison Chart
 
-```{r variable comparison chart, echo = FALSE}
+```{r variable comparison chart, echo = FALSE, warning = FALSE}
 plot(graph2)
 ```
 
-This graph shows the difference between the population of AAPI Jailed and Population of AAPI aged 15-64 for both the nation and California. In this graph Santa Clara County (in purple) is represented by a singular point. It shows that in 2018 the AAPI Jailed population was about 250 while the AAPI population ages 15 - 64 was around 530000. Compared to the national and the rest of the California data points it does seem like Santa Clara Coutyn is an outlier, as most of the points show that for many counties, both in California and nationally, there is a low AAPI jailed population and a low AAPI population aged 15-64.
+This graph shows the difference between the population of AAPI Jailed and Population of AAPI aged 15-64 for both the nation and California. I decided to include this graph because it gives an overview on how Santa Clara County compares to other counties around the US. We don't know which point is which county but we can broadly see how Santa Clara County compares to the rest of the nation.
+
+In this graph Santa Clara County (in purple) is represented by a singular point. It shows that in 2018 the AAPI Jailed population was about 250 while the AAPI population ages 15 - 64 was around 530000. Compared to the national and the rest of the California data points it does seem like Santa Clara County is an outlier, as most of the points show that for many counties, both in California and nationally, there is a low AAPI jailed population and a low AAPI population aged 15-64.
 
 ## Map
-
-In your .Rmd file, make sure to describe why you included the chart, and what patterns emerged
 
 ```{r map, echo = FALSE}
 plot(map)
 ```
 ![Map with labled California Counties, Source California Department of Education](https://www.cde.ca.gov/sp/cd/re/images/cacountymap.gif)
-This map shows the AAPI jailed population of different California counties in 2018. To be able to tell which county is which I have included a second map with county labels. It looks like the county with the highest AAPI jailed population was San Bernadino, which is interesting as it was not the county with the highest AAPI Jailed population in total that was calculated in the summary information. When looking at Santa Clara County it has one of the highest jailed AAPI population for 2018 [].
+<p> This map shows the AAPI jailed population of different California counties in 2018. I decided to add this map to examine how the AAPI jailed population in Santa Clara county compares to the population of the other counties in California, even though the graph above shows almost the same thing here we can know which county is which. I chose to focus only on California and not the entire US because of the fact that it is the state with the highest population of AAPI jailed. Not to mention since the national average of AAPI jailed is so small when compared to the Californian average there would not be a lot to compare. To be able to tell which county is which I have included a second map with county labels. 
+
+It looks like the county with the highest AAPI jailed population was San Bernadino, which is interesting as it was not the county with the highest AAPI Jailed population in total that was calculated in the summary information. This map shows that Santa Clara County has one of the highest jailed AAPI population for 2018. Looking at trends over time graph will give us some more context for this statistic and we can see that there looks to be around 250 AAPI jailed. These two graphs also show that even through Santa Clara County has one of the highest AAPI jailed populations, this values has been pretty stable over the past few years and compared to the White and Latinx population it is overall lower. 

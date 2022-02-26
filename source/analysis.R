@@ -82,7 +82,7 @@ graph1 <- ggplot(graph1_data,
   geom_line(aes(y = white_jail_pop, color = "#559CAD")) +
   geom_line(aes(y = latinx_jail_pop, color = "#8C5383")) +
   geom_line(aes(y = total_jail_pop, color = "black")) +
-  labs(title = "Population of AAPIs VS Whites Vs Latinx jailed in Santa Clara County 1985 - 2018",
+  labs(title = "Jailed Population Of Different Groups In Santa Clara County From 1985 - 2018",
        x = "Year",
        y = "Population Jailed",
        color = "race") +
